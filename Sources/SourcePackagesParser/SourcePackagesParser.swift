@@ -100,7 +100,7 @@ final class SourcePackagesParser {
             let data = try PropertyListSerialization.data(fromPropertyList: dict,
                                                           format: .xml,
                                                           options: .zero)
-            try data.write(to: saveURL, options: .atomic)
+            try String(data: data, encoding: .utf8)?.write(to: saveURL, atomically: false, encoding: .utf8)
         } catch {
             throw SPPError.couldNotExportLicenseList
         }
